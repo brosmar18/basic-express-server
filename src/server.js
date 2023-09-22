@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-const PORT = process.env.PORT || 3001;
 const notFound = require('./error-handlers/404.js');
 const errorHandler = require('./error-handlers/500.js');
 
@@ -16,7 +15,7 @@ app.get('/person', (req, res, next) => {
 
     // check if name is present in the query string
     if (name) {
-        res.json({ name: "name provided" });
+        res.json({ name });
     } else {
         // force a 500 error if name is not present
         res.status(500).send("Server Error: Name not provided in query string.");
@@ -31,8 +30,9 @@ app.get('*', notFound);
 app.use(errorHandler);
 
 
-const start = () => {
-    app.listen(PORT, () => console.log(`The server is running in PORT ${PORT}`));
+const start = (PORT) => { 
+    app.listen(PORT, () => console.log(`The server is running in PORT ${PORT}`)); 
 }
+
 
 module.exports = { start, app };
