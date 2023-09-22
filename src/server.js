@@ -3,8 +3,12 @@
 const express = require('express');
 const notFound = require('./error-handlers/404.js');
 const errorHandler = require('./error-handlers/500.js');
+const logger = require('./middleware/logger.js');
 
 const app = express();
+
+// logger middleware setup for all routes
+app.use(logger);
 
 app.get('/', (req, res, next) => {
     res.status(200).send("Welcome to the home page!");
