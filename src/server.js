@@ -2,6 +2,7 @@
 
 const express = require('express');
 const PORT = process.env.PORT || 3001;
+const notFoundError = require('./error-handlers/404.js');
 
 const app = express();
 
@@ -17,9 +18,12 @@ app.get('/person', (req, res, next) => {
         res.json({ name: "name provided" });
     } else {
         // force a 500 error if name is not present
-        res.status(500).send("Server Error: Name not provided in query string.")
+        res.status(500).send("Server Error: Name not provided in query string.");
     }
 });
+
+app.get('*', notFoundError);
+
 
 const start = () => {
     app.listen(PORT, () => console.log(`The server is running in PORT ${PORT}`));
