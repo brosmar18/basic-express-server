@@ -27,5 +27,12 @@ describe('API Server', () => {
     test('Should respond with 200 if name is in the query string', async () => {
         const response = await mockRequest.get('/person?name=John');
         expect(response.status).toBe(200);
-    })
+    });
+
+    // Given a name in the query string, the output object is correct
+    test('Should output a correct object if name is in the query string', async () => {
+        const name = 'John';
+        const response = await mockRequest.get(`/person?name=${name}`);
+        expect(response.body).toEqual({ name });
+    });
 });
