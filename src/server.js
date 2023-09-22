@@ -5,9 +5,21 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.use('/', (req, res, next) => {
-    res.status(200).send("Hello World!");
-})
+app.get('/', (req, res, next) => {
+    res.status(200).send("Welcome to the home page!");
+});
+
+app.get('/person', (req, res, next) => {
+    const { name } = req.query;
+
+    // check if name is present in the query string
+    if (name) {
+        res.json({ name: "name provided" });
+    } else {
+        // force a 500 error if name is not present
+        res.status(500).send("Server Error: Name not provided in query string.")
+    }
+});
 
 const start = () => {
     app.listen(PORT, () => console.log(`The server is running in PORT ${PORT}`));
