@@ -15,4 +15,11 @@ describe('API Server', () => {
         const response = await mockRequest.post('/');
         expect(response.status).toBe(404);
     });
+
+    // 500 if no name in the query string
+    test('Should respond with 500 if no name in the query string', async () => {
+        const response = await mockRequest.get('/person');
+        expect(response.status).toBe(500);
+        expect(response.body.message).toBe('Server Error: Name not provided in query string.');
+    });
 });
