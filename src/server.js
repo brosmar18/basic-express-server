@@ -22,7 +22,7 @@ app.get('/person', validator, (req, res, next) => {
 });
 
 
-app.get('*', notFound);
+app.use('*', notFound);
 app.use(errorHandler);
 
 
