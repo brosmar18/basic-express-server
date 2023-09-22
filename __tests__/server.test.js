@@ -9,4 +9,10 @@ describe('API Server', () => {
 
         expect(response.status).toBe(404);
     });
+
+    // 404 on bad method
+    test('Should respond with aa 404 for a bad method', async () => {
+        const response = await mockRequest.post('/');
+        expect(response.status).toBe(404);
+    });
 });
