@@ -96,4 +96,4 @@ A .env file is included in local repository. A .env-sample file is uploaed to th
 
 #### UML
 
-![Lab-1 UML](assets/lab-01-uml.png)
+![Lab-2 UML](assets/lab02-uml.png)
